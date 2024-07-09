@@ -42,6 +42,21 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>8.0.0.Final</version> <!-- Use the latest version available -->
+		</dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
@@ -66,6 +81,57 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>7.0.0</version>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<phase>generate-sources</phase> <!-- Bind to generate-sources phase -->
+						<configuration>
+							<inputSpec>
+								${project.basedir}/src/main/resources/openapi.yaml
+							</inputSpec>
+							<generatorName>spring</generatorName>
+							<apiPackage>com.rockseat.planner.openapi.api</apiPackage>
+							<modelPackage>com.rockseat.planner.openapi.model</modelPackage>
+							<invokerPackage>com.rockseat.planner.openapi.invoker</invokerPackage>
+							<supportingFilesToGenerate>
+								ApiUtil.java
+							</supportingFilesToGenerate>
+							<configOptions>
+								<useSpringBoot3>true</useSpringBoot3>
+								<performBeanValidation>true</performBeanValidation>
+								<useBeanValidation>true</useBeanValidation>
+								<useJakartaEe>true</useJakartaEe>
+								<!--interfaceOnly>true</interfaceOnly>-->
+							</configOptions>
+						</configuration>
+					</execution>
+					<execution>
+						<id>generate-openapi-yaml</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>
+								${project.basedir}/src/main/resources/openapi.yaml
+							</inputSpec>
+							<generatorName>openapi-yaml</generatorName>
+							<output>
+								${project.basedir}/target/classes/public/openapi
+							</output>
+							<configOptions>
+								<outputFile>openapi.yaml</outputFile>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
