@@ -1,0 +1,23 @@
+openapi: 3.0.0
+info:
+  title: Trip DTO Definition
+  version: 1.0.0
+components:
+  schemas:
+    TripRequestPayload:
+      type: object
+      properties:
+        "destination":
+          "type": string
+        "starts_at":
+          "type": string
+        "ends_at":
+          "type": string
+        "emails_to_invite":
+          "type": array
+          "items":
+            "type": string
+        "owner_name":
+          "type": string
+        "owner_email":
+          "type": string
