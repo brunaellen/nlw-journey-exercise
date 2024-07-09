@@ -103,7 +103,7 @@
 								<useSpringBoot3>true</useSpringBoot3>
 								<performBeanValidation>true</performBeanValidation>
 								<useBeanValidation>true</useBeanValidation>
-								<!--interfaceOnly>true</interfaceOnly>-->
+								<interfaceOnly>true</interfaceOnly>
 							</configOptions>
 						</configuration>
 					</execution>
