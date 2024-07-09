@@ -74,12 +74,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
+					<classifier>exec</classifier>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -108,7 +103,6 @@
 								<useSpringBoot3>true</useSpringBoot3>
 								<performBeanValidation>true</performBeanValidation>
 								<useBeanValidation>true</useBeanValidation>
-								<useJakartaEe>true</useJakartaEe>
 								<!--interfaceOnly>true</interfaceOnly>-->
 							</configOptions>
 						</configuration>
@@ -128,6 +122,8 @@
 							</output>
 							<configOptions>
 								<outputFile>openapi.yaml</outputFile>
+								<useBeanValidation>true</useBeanValidation>
+								<performBeanValidation>true</performBeanValidation>
 							</configOptions>
 						</configuration>
 					</execution>
