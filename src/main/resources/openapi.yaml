@@ -1,0 +1,21 @@
+openapi: 3.0.0
+info:
+  title: Planner API
+  version: 1.0.0
+paths:
+  /trips:
+    post:
+      summary: Create a plan for your trip
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'trip-dto.yaml#/components/schemas/TripDto'
+      responses:
+        '200':
+          description: Successful created
+          content:
+            application/json:
+              schema:
+                $ref: 'trip-dto.yaml#/components/schemas/TripDto'
