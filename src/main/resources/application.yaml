@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:planner
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+
+springdoc:
+  swagger-ui:
+    url: /openapi/openapi.yaml
