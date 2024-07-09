@@ -11,11 +11,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'trip-dto.yaml#/components/schemas/TripDto'
+              $ref: 'trip-request-payload.yaml#/components/schemas/TripRequestPayload'
       responses:
         '200':
           description: Successful created
           content:
             application/json:
               schema:
-                $ref: 'trip-dto.yaml#/components/schemas/TripDto'
+                $ref: 'trip-request-payload.yaml#/components/schemas/TripRequestPayload'
