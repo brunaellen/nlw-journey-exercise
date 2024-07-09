@@ -18,4 +18,4 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'trip-request-payload.yaml#/components/schemas/TripRequestPayload'
+                $ref: 'trip-create-response.yaml#/components/schemas/TripCreateResponse'

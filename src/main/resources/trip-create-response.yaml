@@ -1,0 +1,12 @@
+openapi: 3.0.0
+info:
+  title: Trip Response Definition
+  version: 1.0.0
+components:
+  schemas:
+    TripCreateResponse:
+      type: object
+      properties:
+        "id":
+          "type": string
+          "format": uuid
