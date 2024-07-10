@@ -19,3 +19,23 @@ paths:
             application/json:
               schema:
                 $ref: 'trip-create-response.yaml#/components/schemas/TripCreateResponse'
+  /trips/{id}:
+    get:
+      summary: Get a created trip plan
+      parameters:
+        - name: id
+          in: path
+          description: trip ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful fetched the trip plan from db
+          content:
+            application/json:
+              schema:
+                $ref: 'created-trip-response.yaml#/components/schemas/CreatedTripResponse'
+        '404':
+          description: trip plan not found for provided id
