@@ -22,6 +22,9 @@ public class Trip {
   @Column(name = "starts_at")
   private LocalDateTime startsAt;
 
+  @Column(name = "ends_at")
+  private LocalDateTime endsAt;
+
   @Column(name = "is_confirmed")
   private Boolean isConfirmed;
 
