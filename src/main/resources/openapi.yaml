@@ -11,14 +11,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'trip-request-payload.yaml#/components/schemas/TripRequestPayload'
+              $ref: './api/model/trip-request-payload.yaml#/components/schemas/TripRequestPayload'
       responses:
         '200':
           description: Successful created
           content:
             application/json:
               schema:
-                $ref: 'trip-create-response.yaml#/components/schemas/TripCreateResponse'
+                $ref: './api/model/trip-create-response.yaml#/components/schemas/TripCreateResponse'
   /trips/{id}:
     get:
       summary: Get a created trip plan
@@ -36,6 +36,6 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'created-trip-response.yaml#/components/schemas/CreatedTripResponse'
+                $ref: './api/model/created-trip-response.yaml#/components/schemas/CreatedTripResponse'
         '404':
           description: trip plan not found for provided id
