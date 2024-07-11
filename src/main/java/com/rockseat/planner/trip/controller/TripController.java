@@ -24,11 +24,15 @@ public class TripController implements TripsApi {
   @Override
   public ResponseEntity<TripCreateResponse> tripsPost(final TripRequestPayload tripRequestPayload) {
     final Trip trip = tripService.createTrip(tripRequestPayload);
-    return ResponseEntity.ok(TripCreateResponse.builder().id(trip.getId()).build());
+
+    return ResponseEntity.ok(TripCreateResponse
+        .builder()
+        .id(trip.getId())
+        .build());
   }
 
   @Override
-  public ResponseEntity<CreatedTripResponse> tripsIdGet(UUID id) {
+  public ResponseEntity<CreatedTripResponse> tripsIdGet(final UUID id) {
     return tripService.getTripDetails(id)
         .map(ResponseEntity::ok)
         .orElseGet(() -> ResponseEntity.notFound().build());
