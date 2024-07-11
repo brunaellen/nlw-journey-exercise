@@ -37,7 +37,7 @@ public class TripService {
         trip.setIsConfirmed(false);
         trip.setOwnerEmail(tripRequestPayload.getOwnerEmail());
         return tripRepository.save(trip);
-      } catch (DateTimeParseException exception){
+      } catch (DateTimeParseException | NullPointerException exception){
         throw new BadTripRequestPayloadException();
       }
     }
