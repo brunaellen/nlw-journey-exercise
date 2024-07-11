@@ -1,5 +1,6 @@
 package com.rockseat.planner.trip.controller;
 
+import com.rockseat.planner.openapi.model.CreatedTripResponse;
 import com.rockseat.planner.openapi.model.TripCreateResponse;
 import com.rockseat.planner.openapi.model.TripRequestPayload;
 import com.rockseat.planner.participant.ParticipantService;
@@ -18,12 +19,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.UUID;
 
-import static java.time.LocalDateTime.parse;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -103,6 +104,28 @@ class TripControllerTest {
   }
 
   @Test
-  void tripsIdGet() {
+  void givenNotFoundId_tripsIdGet_returns404() {
+   when(tripService.getTripDetails(any())).thenReturn(Optional.empty());
+    final ResponseEntity<CreatedTripResponse> createdTripResponseResponseEntity = tripController.tripsIdGet(UUID.randomUUID());
+    assertThat(createdTripResponseResponseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+  }
+
+  @Test
+  void givenId_tripsIdGet_returnsCreatedTripResponse() {
+    final CreatedTripResponse createdTripResponse = CreatedTripResponse
+        .builder()
+        .destination("Spain")
+        .startsAt("invalid")
+        .endsAt("invalid")
+        .ownerName("Bruna")
+        .ownerEmail("bruna@hotmail.com")
+        .emailsToInvite(List.of("sara@hotmail.com", "amy@hotmail.com"))
+        .build();
+
+    when(tripService.getTripDetails(any())).thenReturn(Optional.of(createdTripResponse));
+
+    final ResponseEntity<CreatedTripResponse> createdTripResponseResponseEntity = tripController.tripsIdGet(UUID.randomUUID());
+    assertThat(createdTripResponseResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+    assertThat(createdTripResponseResponseEntity.getBody()).isEqualTo(createdTripResponse);
   }
 }
